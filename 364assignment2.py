@@ -5,7 +5,7 @@ import cplex
 def cplex_writed():
     c = cplex.Cplex()
     c.read("temp.txt")
-    c.write("LP","lp",)
+    c.write("lp.lp",)
 
 
 def create_problem(x, y, z):
@@ -31,7 +31,7 @@ def add_demand_constraints(file, x, y, z):
                 else:
                     line = line + ' + ' + 'x' + str(i) + str(k) + str(j)
             line = line + ' = ' + str(i + j) + '\n'
-            constraint_name = 'demand' + str(index)
+            constraint_name = 'demandflow:' + str(index)
             file.write(constraint_name + ': ')
             file.write(line)
             index += 1
@@ -46,22 +46,20 @@ def add_non_negative_constrain(f,X,Y,Z):
             for k in range(1,Y+1):
                 line = line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n'
                 f.write(line)
+    f.write("end \n")
+
 
 
 def add_capacity_constraint(f,X,Y,Z):
-
+    index = 1
     for i in range(1,X+1):
         for j in range(1,Z+1):
             line = ''
             for k in range(1,Y+1):
-                line = line + "capp"+ str(i) + ":" +' x' + str(i) + str(k) + str(j) + " <=" + "C" + str(i) + str(k) + str(j)+'\n'
+                line = line + "capp"+ str(index) + ":" +' x' + str(i) + str(k) + str(j) + " <=" + "C" + str(i) + str(k) + str(j)+'\n'
+                index += 1
             f.write(line)
-
-    f.write("end")
-        
-
-
-
+        f.write("\n")
 
 
 if __name__ == "__main__":
