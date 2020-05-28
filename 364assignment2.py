@@ -1,6 +1,10 @@
 import sys
 import cplex
-from cplex.exceptions import CplexError
+
+def cplex_writed():
+    c = cplex.Cplex()
+    c.read("temp.txt")
+    c.write("LP","lp",)
 
 
 def create_problem(x, y, z):
@@ -8,14 +12,14 @@ def create_problem(x, y, z):
     f.write('Minimize\n')
     f.write('obj1: 1\n')
     add_demand_constraints(f, x, y, z)
-    add_capacity_constraint(x, y,z)
-    add_non_negative_constrain(x,y,z)
+    add_capacity_constraint(f, x, y,z)
+    add_non_negative_constrain(f, x,y,z)
     cplex_writed()
     
     
     
 def add_demand_constraints(file, x, y, z):
-    f.write("subject to"+'\n')
+    file.write("subject to"+'\n')
     index = 1
     for i in range(1, x+1):
         for j in range(1, z+1):
@@ -37,51 +41,46 @@ def add_non_negative_constrain(f,X,Y,Z):
     f.write("bounds"+'\n')
     for i in range(1,X+1):
         for j in range(1,Z+1):
+            line = ''
             for k in range(1,Y+1):
-                if f.line == '':
-                    line = f.line + 'x' + str(i) + str(k) + str(j) + " >=0"
-                else:
-                    line = f.line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n' \
+                line = line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n'
                 f.write(line)
 
 
 def add_capacity_constraint(f,X,Y,Z):
+
     for i in range(1,X+1):
         for j in range(1,Z+1):
+            line = ''
             for k in range(1,Y+1):
-                if f.line == '':
-                    line = f.line + "capp"+ i +":"+'x' + str(i) + str(k) + str(j) + " >=" + "C" + + str(i) + str(k) + str(j)
-                else:
-                    line = f.line +  "capp"+ i +'x' + str(i) + str(k) + str(j) + " >=0" + str(i) + str(k) + str(j)+'\n'
-                f.write(line)
+                line = line + "capp"+ str(i) + ":" +' x' + str(i) + str(k) + str(j) + " <=" + "C" + str(i) + str(k) + str(j)+'\n'
+            f.write(line)
 
     f.write("end")
         
-    
+
+
 
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: 364assignment2.py X Y Z")
+        print("Usage: 364assignment2.py X Y Z11111")
         print("where 'X' 'Y' and 'Z' are positive integers and 'Y' has to be greater or equal to 2")
         sys.exit(-1)
     else:
-        try:
-            x = int(sys.argv[1])
-            y = int(sys.argv[2])
-            z = int(sys.argv[3])
-            if (x >= 0) and (y >= 2) and (z >= 0):
-                my_prob = create_problem(x, y, z)
-            else:
-                print("'X' 'Y' and 'Z' have to be positive integers and 'Y' >= 2")
-        except:
+        x = int(sys.argv[1])
+        y = int(sys.argv[2])
+        z = int(sys.argv[3])
+        print(x,y,z)
+        if (x >= 0) and (y >= 2) and (z >= 0):
+            my_prob = create_problem(x, y, z)
+        else:
+            print("'X' 'Y' and 'Z' have to be positive integers and 'Y' >= 2")
+    """except:
             print("Usage: 364assignment2.py X Y Z")
             print("where 'X' 'Y' and 'Z' are positive integers and 'Y' has to be greater or equal to 2")
-            sys.exit(-1)            
+            sys.exit(-1)   """
 
-def cplex_writed():
-    c = cplex.Cplex()
-    c.read("temp.txt")
-    c.write("LP","lp",)
+
 
