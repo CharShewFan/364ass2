@@ -8,7 +8,7 @@ def create_problem(x, y, z):
     f.write('Minimize\n')
     f.write('obj1: 1\n')
     add_demand_constraints(f, x, y, z)
-    #add_capacity_constraints(f, x, y, z)
+    add_capacity_constraints(f, x, y, z)
     
     
     
