@@ -13,6 +13,7 @@ def create_problem(x, y, z):
     
     
 def add_demand_constraints(file, x, y, z):
+    f.write("subject to"+'\n')
     index = 1
     for i in range(1, x+1):
         for j in range(1, z+1):
@@ -29,6 +30,31 @@ def add_demand_constraints(file, x, y, z):
             index += 1
                     
 #def add_capacity_constraints(file, x, y, z):
+
+def add_non_negative_constrain(X,Y,Z):
+    f.write("bounds"+'\n')
+    for i in range(1,X+1):
+        for j in range(1,Z+1):
+            for k in range(1,Y+1):
+                if f.line == '':
+                    line = line + 'x' + str(i) + str(k) + str(j) + " >=0"
+                else:
+                    line = line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n' \
+                f.write(line)
+
+
+def add_capacity_constraint():
+    for i in range(1,X+1):
+        for j in range(1,Z+1):
+            for k in range(1,Y+1):
+                if f.line == '':
+                    line = line + "capp"+ i +":"+'x' + str(i) + str(k) + str(j) + " >=" + "C" + + str(i) + str(k) + str(j)
+                else:
+                    line = line +  "capp"+ i +'x' + str(i) + str(k) + str(j) + " >=0" + str(i) + str(k) + str(j)+'\n'
+                f.write(line)
+
+    f.write("end")
+        
     
 
 
