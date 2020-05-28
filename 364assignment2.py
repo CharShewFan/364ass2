@@ -8,7 +8,9 @@ def create_problem(x, y, z):
     f.write('Minimize\n')
     f.write('obj1: 1\n')
     add_demand_constraints(f, x, y, z)
-    #add_capacity_constraints(f, x, y, z)
+    add_capacity_constraint(x, y,z)
+    add_non_negative_constrain(x,y,z)
+    cplex_writed()
     
     
     
@@ -31,26 +33,26 @@ def add_demand_constraints(file, x, y, z):
                     
 #def add_capacity_constraints(file, x, y, z):
 
-def add_non_negative_constrain(X,Y,Z):
+def add_non_negative_constrain(f,X,Y,Z):
     f.write("bounds"+'\n')
     for i in range(1,X+1):
         for j in range(1,Z+1):
             for k in range(1,Y+1):
                 if f.line == '':
-                    line = line + 'x' + str(i) + str(k) + str(j) + " >=0"
+                    line = f.line + 'x' + str(i) + str(k) + str(j) + " >=0"
                 else:
-                    line = line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n' \
+                    line = f.line + 'x' + str(i) + str(k) + str(j) + " >=0"+'\n' \
                 f.write(line)
 
 
-def add_capacity_constraint():
+def add_capacity_constraint(f,X,Y,Z):
     for i in range(1,X+1):
         for j in range(1,Z+1):
             for k in range(1,Y+1):
                 if f.line == '':
-                    line = line + "capp"+ i +":"+'x' + str(i) + str(k) + str(j) + " >=" + "C" + + str(i) + str(k) + str(j)
+                    line = f.line + "capp"+ i +":"+'x' + str(i) + str(k) + str(j) + " >=" + "C" + + str(i) + str(k) + str(j)
                 else:
-                    line = line +  "capp"+ i +'x' + str(i) + str(k) + str(j) + " >=0" + str(i) + str(k) + str(j)+'\n'
+                    line = f.line +  "capp"+ i +'x' + str(i) + str(k) + str(j) + " >=0" + str(i) + str(k) + str(j)+'\n'
                 f.write(line)
 
     f.write("end")
@@ -78,4 +80,8 @@ if __name__ == "__main__":
             print("where 'X' 'Y' and 'Z' are positive integers and 'Y' has to be greater or equal to 2")
             sys.exit(-1)            
 
+def cplex_writed():
+    c = cplex.Cplex()
+    c.read("temp.txt")
+    c.write("LP","lp",)
 
