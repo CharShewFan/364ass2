@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6425e599-122e-4521-9e98-ba62d11a509e" name="Default Changelist" comment="add 3 constrains types">
+    <list default="true" id="6425e599-122e-4521-9e98-ba62d11a509e" name="Default Changelist" comment="v 1.4">
+      <change beforePath="$PROJECT_DIR$/.idea/364ass2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/364ass2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/364assignment2.py" beforeDir="false" afterPath="$PROJECT_DIR$/364assignment2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/temp.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +40,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -61,6 +66,8 @@
       <updated>1590645082600</updated>
       <workItem from="1590645083921" duration="2093000" />
       <workItem from="1590647450745" duration="4132000" />
+      <workItem from="1590657254796" duration="113000" />
+      <workItem from="1590657368108" duration="495000" />
     </task>
     <task id="LOCAL-00001" summary="add 3 constrains types">
       <created>1590650349300</created>
@@ -77,21 +84,27 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add 3 constrains types" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 3 constrains types" />
+    <MESSAGE value="v 1.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 1.4" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2480" y="137" width="790" height="798" key="CommitChangelistDialog2" timestamp="1590650364702">
+    <state x="2315" y="133" width="790" height="798" key="CommitChangelistDialog2" timestamp="1590657847044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2480" y="137" width="790" height="798" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1590650364702" />
-    <state x="743" y="278" width="424" height="479" key="FileChooserDialogImpl" timestamp="1590647495625">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2315" y="133" width="790" height="798" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1590657847044" />
+    <state x="2663" y="289" width="424" height="479" key="FileChooserDialogImpl" timestamp="1590657364722">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="743" y="278" width="424" height="479" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590647495625" />
-    <state x="643" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1590647451695">
+    <state x="2663" y="289" width="424" height="479" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1590657364722" />
+    <state x="2384" y="174" key="SettingsEditor" timestamp="1590657428528">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2384" y="174" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1080@1920.0.1920.1080" timestamp="1590657428528" />
+    <state x="643" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1590657255423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590647451695" />
+    <state x="643" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590657255423" />
     <state x="2668" y="459" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590650356859">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
