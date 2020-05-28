@@ -1,6 +1,7 @@
 import sys
 import cplex
 
+
 def cplex_writed():
     c = cplex.Cplex()
     c.read("temp.txt")
