@@ -8,12 +8,30 @@ def cplex_writed():
     c.write("lp.lp",)
 
 
+
+
+
 def create_problem(x, y, z):
     f = open('temp.txt', 'a')
     f.write('Minimize\n')
-    f.write('obj1: 1\n')
+    line = ""
+    for i in range(1,x+1):
+        for k in range(1,y+1):
+            if line == "":
+                line = "C" + str(i) + str(k)
+            else:
+                line = line + " + " + "C" + str(i) + str(k)
+
+    for k in range(1,y+1):
+        for j in range(1,y+1):
+            line = line + "+" + "d" + str(k) + str(j)
+
+    f.write("obj1: ")
+    f.write(line+"\n")
     add_demand_constraints(f, x, y, z)
     add_capacity_constraint(f, x, y,z)
+    utilization(f,x,y,z)
+    equal_flow(f,x,y,z)
     add_non_negative_constrain(f, x,y,z)
     cplex_writed()
     
@@ -36,17 +54,25 @@ def add_demand_constraints(file, x, y, z):
             file.write(line)
             index += 1
                     
-#def add_capacity_constraints(file, x, y, z):
 
 def add_non_negative_constrain(f,X,Y,Z):
     f.write("bounds"+'\n')
     for i in range(1,X+1):
-        for j in range(1,Z+1):
-            for k in range(1,Y+1):
-                line = 'x' + str(i) + str(k) + str(j) + " >=0"+'\n'
+        for k in range(1,Y+1):
+            line3 = 'c' + str(i) + str(k) + " >= 0\n"
+            f.write(line3)
+            for j in range(1,Z+1):
+                line = 'x' + str(i) + str(k) + str(j) + " >= 0"+'\n'
+                line2 = "0 <= " + 'u' + str(i) + str(k) + str(j) + " <= 1\n"
                 f.write(line)
-    f.write("end \n")
+                f.write(line2)
 
+    for k in range(1,Y+1):
+        for j in range(1,Z+1):
+            line4 = "d" + str(k) + str(j) + " >= 0\n"
+            f.write(line4)
+
+    f.write("end \n")
 
 
 def add_capacity_constraint(f,X,Y,Z):
@@ -55,10 +81,36 @@ def add_capacity_constraint(f,X,Y,Z):
         for j in range(1,Z+1):
             line = ''
             for k in range(1,Y+1):
-                line = line + "capp"+ str(index) + ":" +' x' + str(i) + str(k) + str(j) + " <=" + "C" + str(i) + str(k) + str(j)+'\n'
+                line = line + "capp"+ str(index) + ":" +' x' + str(i) + str(k) + str(j) + " <= " + "c" + str(i) + str(k) + '\n'
                 index += 1
             f.write(line)
-        f.write("\n")
+
+    for k in range(1,y+1):
+        for j in range(1,z+1):
+            line = ''
+            for i in range(1,x+1):
+                line = line + "capp"+ str(index) + ":" +' x' + str(i) + str(k) + str(j) + " <= " + "d" + str(k) + str(j) + '\n'
+                index += 1
+            f.write(line)
+    f.write("\n")
+
+
+def utilization(f,x,y,z):
+    for i in range(1,x+1):
+        for j in range(1,z+1):
+            line = ""
+            for k in range(1,y+1):
+                line = "equallySplit:" + "u" + str(i) + str(k) + str(j)
+            f.write(line + "\n")
+
+
+def equal_flow(f,x,y,z):
+    for i in range(1,x+1):
+        for k in range(1,y+1):
+            line = ""
+            for j in range(1,z+1):
+                line = "(u" + str(i) + str(k) + str(j) + " * " + "h" + str(i) + str(j) + ")/2"
+            f.write(line)
 
 
 if __name__ == "__main__":
